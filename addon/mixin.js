@@ -139,8 +139,8 @@ export default Ember.Mixin.create(setValidityMixin, {
 
     for (var validatorName in get(this, 'validations')[property]) {
       if (validatorName === 'inline') {
-        pushValidator.call(this, createInlineClass(this.validations[property][validatorName].callback));
-      } else if (this.validations[property].hasOwnProperty(validatorName)) {
+        pushValidator.call(this, createInlineClass(get(this, 'validations')[property][validatorName].callback));
+      } else if (get(this, 'validations')[property].hasOwnProperty(validatorName)) {
         Ember.EnumerableUtils.forEach(lookupValidator.call(this, validatorName), pushValidator, this);
       }
     }
